@@ -6,23 +6,33 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+//
 
 @Entity
-@Table(name = "user_table")
+@Table(name = "Users")
 public class User {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	@Column
+	
+	@Column(name="username",length=50,nullable = false,unique = true)
+	private String username;
+	
+
+	@Column(name="firstname",length=50,nullable = false)
 	private String firstname;
-	@Column
+	
+	@Column(name="lasttname",length=50,nullable = false)
 	private String lasttname;
-	@Column
+	
+	@Column(name="email",length=50,nullable = false)
 	private String email;
-	@Column
+	
+	@Column(name="role",length=50,nullable = false)
 	private String role;
-	@Column
+	
+	@Column(name="ssn",length=50,nullable = false,unique = true)
 	private String ssn;
 
 	// setters & getters
@@ -32,6 +42,14 @@ public class User {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+	
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getFirstname() {
@@ -74,27 +92,34 @@ public class User {
 		this.ssn = ssn;
 	}
 
+    
 	// ToString
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", firstname=" + firstname + ", lasttname=" + lasttname + ", email=" + email
-				+ ", role=" + role + ", ssn=" + ssn + "]";
+		return "User [id=" + id + ", username=" + username + ", firstname=" + firstname + ", lasttname=" + lasttname
+				+ ", email=" + email + ", role=" + role + ", ssn=" + ssn + "]";
 	}
-
+   
+	
 	// No field constructor
-	public User() {
+		public User() {
 
-	}
-
+		} 
+		
 	// Fields constructor
-	public User(long id, String firstname, String lasttname, String email, String role, String ssn) {
+	public User(long id, String username, String firstname, String lasttname, String email, String role, String ssn) {
 		super();
 		this.id = id;
+		this.username = username;
 		this.firstname = firstname;
 		this.lasttname = lasttname;
 		this.email = email;
 		this.role = role;
 		this.ssn = ssn;
 	}
+
+	
+	
+	
 
 }
